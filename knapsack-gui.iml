@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_11">
+    <output url="file://$MODULE_DIR$/target/classes" />
+    <output-test url="file://$MODULE_DIR$/target/test-classes" />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/target" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-fxml:12-ea+14" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-fxml:mac:12-ea+14" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-controls:12-ea+14" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-controls:mac:12-ea+14" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:12-ea+14" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:mac:12-ea+14" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-base:12-ea+14" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-base:mac:12-ea+14" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../discrete-knapsack-problem/out/artifacts/discrete_knapsack_problem_jar/discrete-knapsack-problem.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+  </component>
+</module>
