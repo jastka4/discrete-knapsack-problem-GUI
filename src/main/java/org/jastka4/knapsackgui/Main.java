@@ -10,9 +10,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/sample.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 500, 400));
+        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("fxml/home.fxml"));
+        primaryStage.setTitle("Discrete knapsack problem solver");
+        primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
 
