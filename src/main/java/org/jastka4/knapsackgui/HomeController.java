@@ -1,6 +1,5 @@
 package org.jastka4.knapsackgui;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
@@ -22,31 +21,40 @@ public class HomeController implements Initializable {
 	@FXML private TextField weight;
 	@FXML private ListView<Item> items;
 	@FXML private ComboBox<KnapsackAlgorithmConstants> algorithmComboBox;
+	@FXML private ListView<Item> solutionItems;
+	@FXML private TextField maxValue;
 
-	public void addItem(ActionEvent actionEvent) {
-		final Item item = new Item(name.getText(), new BigDecimal(value.getText()), Integer.parseInt(weight.getText())); // TODO - add NumberFormat for internationalization
+	private static KnapsackAlgorithmFactory knapsackAlgorithmFactory;
+
+	public void addItem() {
+		final Item item = new Item(name.getText(), setScale(new BigDecimal(value.getText())), Integer.parseInt(weight.getText())); // TODO - add NumberFormat for internationalization
 		items.getItems().add(item);
 	}
 
-	public void solve(ActionEvent actionEvent) {
+	public void solve() {
 		final int selectedCapacity = Integer.parseInt(capacity.getText());
 		final KnapsackAlgorithmConstants selectedAlgorithm = algorithmComboBox.getSelectionModel().getSelectedItem();
 		final List<Item> selectedItems = items.getItems();
 
-		KnapsackAlgorithmFactory knapsackAlgorithmFactory = new KnapsackAlgorithmFactory();
-		ProblemInstance problemInstance = new ProblemInstance(selectedItems, selectedCapacity);
-		KnapsackAlgorithm knapsackAlgorithm = knapsackAlgorithmFactory.createKnapsackAlgorithm(selectedAlgorithm, problemInstance);
-		Solution solution = knapsackAlgorithm.solve();
+		final ProblemInstance problemInstance = new ProblemInstance(selectedItems, selectedCapacity);
+		final KnapsackAlgorithm knapsackAlgorithm = knapsackAlgorithmFactory.createKnapsackAlgorithm(selectedAlgorithm, problemInstance);
+		final Solution solution = knapsackAlgorithm.solve();
+
+		solutionItems.getItems().setAll(solution.getItems());
+		maxValue.setText(solution.getValue().toString());
 	}
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
-		initializeListView();
+		knapsackAlgorithmFactory = new KnapsackAlgorithmFactory();
+
+		initializeListView(items);
+		initializeListView(solutionItems);
 		initializeAlgorithmComboBox();
 	}
 
-	private void initializeListView() {
-		items.setCellFactory((ListView<Item> param) -> new ListCell<>() {
+	private void initializeListView(final ListView<Item> listView) {
+		listView.setCellFactory((ListView<Item> param) -> new ListCell<>() {
 			@Override
 			protected void updateItem(Item item, boolean empty) {
 				super.updateItem(item, empty);
@@ -55,7 +63,7 @@ public class HomeController implements Initializable {
 				} else {
 					String text = new StringBuilder()
 							.append(item.getName())
-							.append(", ").append(item.getValue().setScale(2, RoundingMode.HALF_UP)).append("zł")    // TODO - add internationalization
+							.append(", ").append(item.getValue())    // TODO - add internationalization
 							.append(", ").append(item.getWeight()).append("g")  // TODO - add internationalization ??
 							.toString();
 					setText(text);
@@ -69,5 +77,9 @@ public class HomeController implements Initializable {
 				KnapsackAlgorithmConstants.DYNAMIC_PROGRAMMING,
 				KnapsackAlgorithmConstants.GREEDY_ALGORITHM,
 				KnapsackAlgorithmConstants.RANDOM_SEARCH);
+	}
+
+	private BigDecimal setScale(final BigDecimal bigDecimal) {
+		return bigDecimal.setScale(2, RoundingMode.HALF_UP);
 	}
 }
