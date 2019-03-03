@@ -5,6 +5,9 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -12,59 +15,118 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="center" hgap="10.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="570.0" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.jastka4.knapsackgui.HomeController">
-   <columnConstraints>
-      <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="70.0" />
-      <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="70.0" />
-      <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="70.0" />
-      <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="80.0" />
-      <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="60.0" />
-      <ColumnConstraints maxWidth="150.0" minWidth="-Infinity" prefWidth="100.0" />
-   </columnConstraints>
-   <rowConstraints>
-      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" />
-      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" />
-      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="150.0" />
-      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" />
-      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0" />
-      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="50.0" />
-      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="10.0" />
-      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="20.0" />
-      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="100.0" />
-      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="100.0" />
-   </rowConstraints>
-   <children>
-      <ComboBox fx:id="algorithmComboBox" prefWidth="150.0" promptText="None" GridPane.columnIndex="5" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" />
-      <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#solve" prefWidth="200.0" text="Solve" textAlignment="CENTER" GridPane.columnSpan="6" GridPane.halignment="CENTER" GridPane.rowIndex="5" GridPane.valignment="BOTTOM" />
-      <ImageView fitHeight="130.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.rowSpan="2" GridPane.valignment="CENTER">
-         <image>
-            <Image url="@../img/backpack.png" />
-         </image>
-      </ImageView>
-      <Label text="Name" GridPane.columnIndex="0" GridPane.valignment="BOTTOM" />
-      <Label text="Value" GridPane.columnIndex="1" GridPane.valignment="BOTTOM" />
-      <Label text="Weight" GridPane.columnIndex="2" GridPane.valignment="BOTTOM" />
-      <TextField id="name" fx:id="name" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-      <TextField id="value" fx:id="value" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-      <TextField id="weight" fx:id="weight" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-      <ListView fx:id="items" prefHeight="124.0" prefWidth="170.0" GridPane.columnSpan="4" GridPane.rowIndex="2" GridPane.rowSpan="3" />
-      <Label text="Capacity" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-      <TextField id="capacity" fx:id="capacity" GridPane.columnIndex="5" GridPane.rowIndex="3" />
-      <Label text="Algorithm" GridPane.columnIndex="4" GridPane.rowIndex="4" />
-      <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addItem" prefWidth="80.0" text="Add item" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-      <ListView fx:id="solutionItems" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="4" GridPane.rowIndex="8" GridPane.rowSpan="2" />
-      <Label text="Solution" textAlignment="CENTER" GridPane.columnSpan="6" GridPane.halignment="CENTER" GridPane.rowIndex="7" GridPane.valignment="CENTER">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </Label>
-      <Label text="Maximum value" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="BOTTOM" />
-      <Separator prefWidth="200.0" GridPane.columnSpan="6" GridPane.rowIndex="6" GridPane.valignment="BOTTOM" />
-      <TextField fx:id="maxValue" editable="false" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.hgrow="NEVER" GridPane.rowIndex="9" GridPane.valignment="TOP" />
-   </children>
-   <padding>
-      <Insets bottom="30.0" left="20.0" right="20.0" top="20.0" />
-   </padding>
-</GridPane>
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="705.0"
+      prefWidth="600.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/11.0.1"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.jastka4.knapsackgui.HomeController">
+    <children>
+        <GridPane styleClass="menu-bar">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="50.0"
+                                   prefWidth="50.0"/>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="100.0"
+                                   prefWidth="100.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <children>
+                <MenuBar id="menu-bar">
+                    <menus>
+                        <Menu mnemonicParsing="false" text="File">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="Close"/>
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Edit">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="Change language"/>
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Help">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="About"/>
+                            </items>
+                        </Menu>
+                    </menus>
+                </MenuBar>
+                <Label text="en/GB" GridPane.columnIndex="1"/>
+                <Label text="03/03/2019" GridPane.columnIndex="2"/>
+            </children>
+        </GridPane>
+        <GridPane alignment="center" hgap="10.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0"
+                  prefWidth="570.0" vgap="10">
+            <columnConstraints>
+                <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="70.0"/>
+                <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="70.0"/>
+                <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="70.0"/>
+                <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="80.0"/>
+                <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="60.0"/>
+                <ColumnConstraints maxWidth="150.0" minWidth="-Infinity" prefWidth="100.0"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0"/>
+                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity"/>
+                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="150.0"/>
+                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0"/>
+                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0"/>
+                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0"/>
+                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0"/>
+                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="10.0"/>
+                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="20.0"/>
+                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="100.0"/>
+                <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="100.0"/>
+            </rowConstraints>
+            <children>
+                <ComboBox fx:id="algorithmComboBox" prefWidth="150.0" promptText="None" GridPane.columnIndex="5"
+                          GridPane.hgrow="ALWAYS" GridPane.rowIndex="4"/>
+                <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#solve"
+                        prefWidth="200.0" text="Solve" textAlignment="CENTER" GridPane.columnSpan="6"
+                        GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="BOTTOM"/>
+                <ImageView fitHeight="130.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true"
+                           GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="CENTER"
+                           GridPane.rowIndex="1" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+                    <image>
+                        <Image url="@../img/backpack.png"/>
+                    </image>
+                </ImageView>
+                <Label text="Name" GridPane.valignment="BOTTOM"/>
+                <Label text="Value" GridPane.columnIndex="1" GridPane.valignment="BOTTOM"/>
+                <Label text="Weight" GridPane.columnIndex="2" GridPane.valignment="BOTTOM"/>
+                <TextField id="name" fx:id="name" GridPane.rowIndex="1"/>
+                <TextField id="value" fx:id="value" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                <TextField id="weight" fx:id="weight" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+                <ListView fx:id="items" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="4"
+                          GridPane.rowIndex="2" GridPane.rowSpan="3"/>
+                <Label text="Capacity" GridPane.columnIndex="4" GridPane.rowIndex="3"/>
+                <TextField id="capacity" fx:id="capacity" GridPane.columnIndex="5" GridPane.rowIndex="3"/>
+                <Label text="Algorithm" GridPane.columnIndex="4" GridPane.rowIndex="4"/>
+                <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                        mnemonicParsing="false" onAction="#addItem" prefWidth="80.0" text="Add item"
+                        GridPane.columnIndex="3" GridPane.rowIndex="1"/>
+                <ListView fx:id="solutionItems" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="4"
+                          GridPane.rowIndex="9" GridPane.rowSpan="2"/>
+                <Label text="Solution" textAlignment="CENTER" GridPane.columnSpan="6" GridPane.halignment="CENTER"
+                       GridPane.rowIndex="8" GridPane.valignment="CENTER">
+                    <font>
+                        <Font name="System Bold" size="13.0"/>
+                    </font>
+                </Label>
+                <Label text="Maximum value" GridPane.columnIndex="4" GridPane.columnSpan="2"
+                       GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="BOTTOM"/>
+                <Separator prefWidth="200.0" GridPane.columnSpan="6" GridPane.rowIndex="7"
+                           GridPane.valignment="BOTTOM"/>
+                <TextField fx:id="maxValue" editable="false" GridPane.columnIndex="4" GridPane.columnSpan="2"
+                           GridPane.hgrow="NEVER" GridPane.rowIndex="10" GridPane.valignment="TOP"/>
+                <Label text="0 items" GridPane.columnSpan="4" GridPane.halignment="CENTER" GridPane.rowIndex="5"
+                       GridPane.valignment="CENTER"/>
+            </children>
+            <padding>
+                <Insets bottom="30.0" left="20.0" right="20.0" top="20.0"/>
+            </padding>
+        </GridPane>
+    </children>
+</VBox>
