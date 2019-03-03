@@ -19,8 +19,8 @@
 <?import javafx.scene.text.Font?>
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="705.0"
-      prefWidth="600.0" stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/11.0.1"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.jastka4.knapsackgui.HomeController">
+      stylesheets="@../style/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="org.jastka4.knapsackgui.HomeController">
     <children>
         <GridPane styleClass="menu-bar">
             <columnConstraints>
@@ -36,36 +36,36 @@
             <children>
                 <MenuBar id="menu-bar">
                     <menus>
-                        <Menu mnemonicParsing="false" text="File">
+                        <Menu mnemonicParsing="false" text="%menu.file">
                             <items>
-                                <MenuItem mnemonicParsing="false" text="Close"/>
+                                <MenuItem onAction="#close" mnemonicParsing="false" text="%menu.file.close"/>
                             </items>
                         </Menu>
-                        <Menu mnemonicParsing="false" text="Edit">
-                            <items>
-                                <MenuItem mnemonicParsing="false" text="Change language"/>
-                            </items>
+                        <Menu mnemonicParsing="false" text="%menu.language">
+                            <MenuItem onAction="#changeLanguage" mnemonicParsing="false" text="pl/PL" fx:id="PL"/>
+                            <MenuItem onAction="#changeLanguage" mnemonicParsing="false" text="en/GB" fx:id="GB"/>
+                            <MenuItem onAction="#changeLanguage" mnemonicParsing="false" text="en/US" fx:id="US"/>
                         </Menu>
-                        <Menu mnemonicParsing="false" text="Help">
+                        <Menu mnemonicParsing="false" text="%menu.help">
                             <items>
-                                <MenuItem mnemonicParsing="false" text="About"/>
+                                <MenuItem onAction="#getAbout" mnemonicParsing="false" text="%menu.help.about"/>
                             </items>
                         </Menu>
                     </menus>
                 </MenuBar>
-                <Label text="en/GB" GridPane.columnIndex="1"/>
-                <Label text="03/03/2019" GridPane.columnIndex="2"/>
+                <Label text="%application.language" GridPane.columnIndex="1"/>
+                <Label fx:id="currentDate" GridPane.columnIndex="2"/>
             </children>
         </GridPane>
         <GridPane alignment="center" hgap="10.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0"
-                  prefWidth="570.0" vgap="10">
+                  vgap="10">
             <columnConstraints>
                 <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="70.0"/>
                 <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="70.0"/>
                 <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="70.0"/>
-                <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="80.0"/>
-                <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="60.0"/>
-                <ColumnConstraints maxWidth="150.0" minWidth="-Infinity" prefWidth="100.0"/>
+                <ColumnConstraints/>
+                <ColumnConstraints/>
+                <ColumnConstraints maxWidth="-Infinity" minWidth="-Infinity" prefWidth="150.0"/>
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="25.0"/>
@@ -84,7 +84,7 @@
                 <ComboBox fx:id="algorithmComboBox" prefWidth="150.0" promptText="None" GridPane.columnIndex="5"
                           GridPane.hgrow="ALWAYS" GridPane.rowIndex="4"/>
                 <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#solve"
-                        prefWidth="200.0" text="Solve" textAlignment="CENTER" GridPane.columnSpan="6"
+                        prefWidth="200.0" text="%knapsack.solve" textAlignment="CENTER" GridPane.columnSpan="6"
                         GridPane.halignment="CENTER" GridPane.rowIndex="6" GridPane.valignment="BOTTOM"/>
                 <ImageView fitHeight="130.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true"
                            GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="CENTER"
@@ -93,29 +93,30 @@
                         <Image url="@../img/backpack.png"/>
                     </image>
                 </ImageView>
-                <Label text="Name" GridPane.valignment="BOTTOM"/>
-                <Label text="Value" GridPane.columnIndex="1" GridPane.valignment="BOTTOM"/>
-                <Label text="Weight" GridPane.columnIndex="2" GridPane.valignment="BOTTOM"/>
+                <Label text="%item.name" GridPane.valignment="BOTTOM"/>
+                <Label text="%item.value" GridPane.columnIndex="1" GridPane.valignment="BOTTOM"/>
+                <Label text="%item.weight" GridPane.columnIndex="2" GridPane.valignment="BOTTOM"/>
                 <TextField id="name" fx:id="name" GridPane.rowIndex="1"/>
                 <TextField id="value" fx:id="value" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
                 <TextField id="weight" fx:id="weight" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
                 <ListView fx:id="items" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="4"
                           GridPane.rowIndex="2" GridPane.rowSpan="3"/>
-                <Label text="Capacity" GridPane.columnIndex="4" GridPane.rowIndex="3"/>
-                <TextField id="capacity" fx:id="capacity" GridPane.columnIndex="5" GridPane.rowIndex="3"/>
-                <Label text="Algorithm" GridPane.columnIndex="4" GridPane.rowIndex="4"/>
+                <Label text="%knapsack.capacity" GridPane.columnIndex="4" GridPane.rowIndex="3"/>
+                <TextField id="capacity" fx:id="capacity" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="50.0"
+                           GridPane.columnIndex="5" GridPane.rowIndex="3"/>
+                <Label text="%knapsack.algorithm" GridPane.columnIndex="4" GridPane.rowIndex="4"/>
                 <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-                        mnemonicParsing="false" onAction="#addItem" prefWidth="80.0" text="Add item"
-                        GridPane.columnIndex="3" GridPane.rowIndex="1"/>
+                        mnemonicParsing="false" onAction="#addItem" text="%item.add" GridPane.columnIndex="3"
+                        GridPane.rowIndex="1" GridPane.vgrow="ALWAYS"/>
                 <ListView fx:id="solutionItems" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="4"
                           GridPane.rowIndex="9" GridPane.rowSpan="2"/>
-                <Label text="Solution" textAlignment="CENTER" GridPane.columnSpan="6" GridPane.halignment="CENTER"
-                       GridPane.rowIndex="8" GridPane.valignment="CENTER">
+                <Label text="%knapsack.solution" textAlignment="CENTER" GridPane.columnSpan="6"
+                       GridPane.halignment="CENTER" GridPane.rowIndex="8" GridPane.valignment="CENTER">
                     <font>
                         <Font name="System Bold" size="13.0"/>
                     </font>
                 </Label>
-                <Label text="Maximum value" GridPane.columnIndex="4" GridPane.columnSpan="2"
+                <Label text="%knapsack.max_value" GridPane.columnIndex="4" GridPane.columnSpan="2"
                        GridPane.halignment="CENTER" GridPane.rowIndex="9" GridPane.valignment="BOTTOM"/>
                 <Separator prefWidth="200.0" GridPane.columnSpan="6" GridPane.rowIndex="7"
                            GridPane.valignment="BOTTOM"/>
