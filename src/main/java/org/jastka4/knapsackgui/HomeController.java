@@ -26,7 +26,7 @@ public class HomeController implements Initializable {
 	@FXML private Menu languagesMenu;
 	@FXML private Label currentDate;
 	@FXML private Label language;
-	@FXML private TextField capacity;
+	@FXML private TextField capacityField;
 	@FXML private TextField name;
 	@FXML private TextField value;
 	@FXML private TextField weight;
@@ -38,6 +38,8 @@ public class HomeController implements Initializable {
 
 	private static KnapsackAlgorithmFactory knapsackAlgorithmFactory = new KnapsackAlgorithmFactory();
 	private static List<Item> items = new ArrayList<>();
+	private static List<Item> solution = new ArrayList<>();
+	private static String capacity;
 
 	public void addItem() {
 		final Item item = new Item(name.getText(), new BigDecimal(value.getText()), Integer.parseInt(weight.getText()));
@@ -46,7 +48,7 @@ public class HomeController implements Initializable {
 	}
 
 	public void solve() {
-		final int selectedCapacity = Integer.parseInt(capacity.getText());
+		final int selectedCapacity = Integer.parseInt(capacityField.getText());
 		final KnapsackAlgorithmConstants selectedAlgorithm = algorithmComboBox.getSelectionModel().getSelectedItem();
 		final List<Item> selectedItems = itemsListView.getItems();
 
@@ -62,6 +64,8 @@ public class HomeController implements Initializable {
 		I18N.setLocale(locale);
 		try {
 			items = itemsListView.getItems();
+			solution = solutionItems.getItems();
+			capacity = capacityField.getText();
 			content.getScene().setRoot(FXMLLoader.load(getClass().getClassLoader().getResource("fxml/home.fxml"), I18N.getResource()));
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -87,8 +91,14 @@ public class HomeController implements Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
-		if (Objects.nonNull(items) && !items.isEmpty()) {
+		if (!items.isEmpty()) {
 			itemsListView.getItems().setAll(items);
+		}
+		if (!solution.isEmpty()) {
+			solutionItems.getItems().setAll(solution);
+		}
+		if (Objects.nonNull(capacity)) {
+			capacityField.setText(capacity);
 		}
 		initializeItemsListView(itemsListView);
 		updateItemsNumber(itemsListView.getItems().size());

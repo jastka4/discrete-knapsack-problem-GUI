@@ -87,7 +87,7 @@
                 <TextField id="weight" fx:id="weight" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                 <ListView fx:id="itemsListView" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="4" GridPane.rowIndex="2" GridPane.rowSpan="3" />
                 <Label text="%knapsack.capacity" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-                <TextField id="capacity" fx:id="capacity" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="50.0" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+                <TextField id="capacity" fx:id="capacityField" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="50.0" GridPane.columnIndex="5" GridPane.rowIndex="3" />
                 <Label text="%knapsack.algorithm" GridPane.columnIndex="4" GridPane.rowIndex="4" />
                 <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#addItem" text="%item.add" GridPane.columnIndex="3" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS" />
                 <ListView fx:id="solutionItems" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="4" GridPane.rowIndex="9" GridPane.rowSpan="2" />
