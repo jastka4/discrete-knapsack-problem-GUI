@@ -113,7 +113,7 @@ public class HomeController implements Initializable {
 	}
 
 	private void initializeItemsListView(final ListView<Item> listView) {
-		final NumberFormat numberFormat = NumberFormat.getCurrencyInstance();
+		final NumberFormat numberFormat = NumberFormat.getCurrencyInstance(I18N.getLocale());
 		listView.setCellFactory((ListView<Item> param) -> new ListCell<>() {
 			@Override
 			protected void updateItem(Item item, boolean empty) {
