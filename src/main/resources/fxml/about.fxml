@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="200.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.jastka4.knapsackgui.AboutController">
+    <children>
+        <Text fx:id="copyright" layoutX="77.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0"/>
+        <Hyperlink layoutX="116.0" layoutY="88.0" onAction="#openGithub" text="Github"/>
+    </children>
+</AnchorPane>
